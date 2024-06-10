@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve the HTML file at the root path
-app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(express.static(path.join(process.cwd(), 'AmazonScrapper')));
 
 // Function to fetch and parse Amazon search results
 const fetchAmazonResults = async (keyword) => {
