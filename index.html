@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .product {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .product img {
+            max-width: 100px;
+            display: block;
+        }
+        .product-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .product-rating, .product-reviews {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Product Scraper</h1>
+        <div class="form-group">
+            <label for="keyword">Enter Keyword:</label>
+            <input type="text" id="keyword" placeholder="e.g., laptop">
+        </div>
+        <button id="scrapeButton">Scrape Products</button>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('scrapeButton').addEventListener('click', async () => {
+            const keyword = document.getElementById('keyword').value;
+            if (!keyword) {
+                alert('Please enter a keyword.');
+                return;
+            }
+
+            const response = await fetch(`/api/scrape?keyword=${encodeURIComponent(keyword)}`);
+            const products = await response.json();
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (products.length === 0) {
+                resultsDiv.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                productDiv.appendChild(img);
+
+                const title = document.createElement('div');
+                title.className = 'product-title';
+                title.textContent = product.title;
+                productDiv.appendChild(title);
+
+                const rating = document.createElement('div');
+                rating.className = 'product-rating';
+                rating.textContent = `Rating: ${product.rating}`;
+                productDiv.appendChild(rating);
+
+                const reviews = document.createElement('div');
+                reviews.className = 'product-reviews';
+                reviews.textContent = `Reviews: ${product.reviews}`;
+                productDiv.appendChild(reviews);
+
+                resultsDiv.appendChild(productDiv);
+            });
+        });
+    </script>
+</body>
+</html>
