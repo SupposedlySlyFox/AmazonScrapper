@@ -110,9 +110,11 @@
                 img.src = product.image;
                 productDiv.appendChild(img);
 
-                const title = document.createElement('div');
+                const title = document.createElement('a'); // div doesn't work for this, so 'a' attribute is right for usage here
                 title.className = 'product-title';
                 title.textContent = product.title;
+                title.href = `https://www.amazon.com/s?k=${encodeURIComponent(product.title)}`;
+                title.target = '_blank';
                 productDiv.appendChild(title);
 
                 const rating = document.createElement('div');
