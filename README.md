@@ -13,3 +13,7 @@ node server.js
 ```
 # Access the Webpage:
 Open your web browser and navigate to [http://localhost:3000](http://localhost:3000). You should see and use the webpage.
+
+
+# Q&A
+You have to install the dependencies due to github not allowing me to type it down.
