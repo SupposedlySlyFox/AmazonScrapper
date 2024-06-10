@@ -16,4 +16,4 @@ Open your web browser and navigate to [http://localhost:3000](http://localhost:3
 
 
 # Q&A
-You have to install the dependencies due to github not allowing me to type it down.
+You have to install the dependencies due to github not allowing me to put it down on the files.
