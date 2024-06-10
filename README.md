@@ -17,3 +17,4 @@ Open your web browser and navigate to [http://localhost:3000](http://localhost:3
 
 # Q&A
 You have to install the dependencies due to github not allowing me to put it down on the files.
+There is a slight bug for the reviews that only highlight "Products highlighted as 'Overall Pick' are:" but that's something i couldn't find a way to break it through
