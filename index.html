@@ -124,8 +124,12 @@
 
                 const reviews = document.createElement('div');
                 reviews.className = 'product-reviews';
-                reviews.textContent = `Reviews: ${product.reviews}`;
-                productDiv.appendChild(reviews);
+                // Checking if the review is a number or not, as so, it's correcting misleading information.
+                if (!isNaN(product.reviews)) {
+                    reviews.textContent = `Reviews: ${product.reviews}`;
+                } else { 
+                    reviews.textContent = 'No reviews found. ( The results may depend on the product, check it by clicking on its link )'
+                }
 
                 resultsDiv.appendChild(productDiv);
             });
